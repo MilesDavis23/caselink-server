@@ -1,0 +1,14 @@
+[
+    {
+        "id:" : 1,
+        "title: " : "I want to sue my neighbour.",
+        "description:" : "He is loud.",
+        "lawyerId" : 2
+    },
+    {
+        "id:" : 2,
+        "title: " : "I want to sue Pixar.",
+        "description:" : "Potato head was based on me.",
+        "lawyerId" : 2
+    }
+]
