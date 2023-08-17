@@ -3,11 +3,6 @@ const router = express.Router();
 const fs = require('fs');
 const path = require('path');
 
-
-
-
-
-
 /* Get lawyer cases  */
 router.get('/my-cases', (req, res) => {
     const filePath = path.join(__dirname, '..', 'test_data', 'test_cases.json');
