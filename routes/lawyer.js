@@ -1,20 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const fs = require('fs');
-const path = require('path');
+const getCasesDal = require('../utils(dal)/cases/my-cases');
 
-/* Get lawyer cases  */
-router.get('/my-cases', (req, res) => {
-    const filePath = path.join(__dirname, '..', 'test_data', 'test_cases.json');
-    fs.readFile(filePath, 'utf8', (error, data) => {
+router.get('/my-cases/:lawyerId', (req, res) => {
+    const lawyerId = req.params.lawyerId;
+    getCasesDal.getMyCasesByLawyerId(lawyerId, (error, cases) => {
         if (error) {
-            console.error("Error during reading the file:", error);
-            return res.status(500).send('Error reading dummy data.');
+            return res.status(500).json({error: 'Failed to tetrive my cases.'})
         }
-        res.send(data);
+        res.json(cases);
     });
 });
 
+module.exports = router; 
 
 /*
 router.get('/my-cases', function(req, res, next) {
