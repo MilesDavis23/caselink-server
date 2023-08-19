@@ -7,7 +7,11 @@ const pool = mysql.createPool({
     database: 'CaselinkDB'
 });
 
+/*
 pool.query('SELECT * FROM USERS', (error, results) => {
     if (error) throw error;
     console.log(results);
 });
+*/
+
+module.exports = pool;
