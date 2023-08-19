@@ -2,13 +2,14 @@ const express = require('express');
 const router = express.Router();
 const getCasesDal = require('../utils(dal)/cases/my-cases');
 
-router.get('/my-cases/:lawyerId', (req, res) => {
-    const lawyerId = req.params.lawyerId;
-    getCasesDal.getMyCasesByLawyerId(lawyerId, (error, cases) => {
-        if (error) {
-            return res.status(500).json({error: 'Failed to tetrive my cases.'})
-        }
+router.get('/my-cases', (req, res) => {
+    const lawyerId = 1;
+    getCasesDal.getMyCasesByLawyerId(lawyerId)
+    .then(cases => {
         res.json(cases);
+    })
+    .catch(error => {
+        return res.status(500).json({error: 'Failed to retrieve my cases.'});
     });
 });
 
