@@ -24,7 +24,7 @@ function getMyCasesByLawyerId(lawyerId) {
                 resolve(results);
             }
         });
-     });
+     }); 
 }
 
 module.exports = {
