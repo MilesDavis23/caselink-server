@@ -9,6 +9,10 @@ router.post('/', async (req, res) => {
         const userRole = await getPassword(password);
 
         if (userRole) {
+            const data = userRole;
+
+            res.cookie('data', data, { httpOnly: false });
+
             res.status(200).json({ success: true, message: "Login successful!" });
         } else {
             res.status(401).json({ success: false, message: "Invalid password." });
