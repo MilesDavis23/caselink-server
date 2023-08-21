@@ -7,7 +7,11 @@ function getPassword(password) {
             if (error) {
                 reject(error);
             } else {
-                resolve(results[0]?.count > 0);
+                if (results.length > 0) {
+                    resolve(results[0].role);
+                } else {
+                    resolve(null);
+                }
             }
         })
     })
