@@ -9,12 +9,13 @@ router.post('/', async (req, res) => {
         const userRole = await getPassword(password);
 
         if (userRole) {
-            res.status(200).json({ success: true, message: "Login successful!" });
+            res.status(200).json({ success: true, message: "Login successful!", role: userRole });
         } else {
             res.status(401).json({ success: false, message: "Invalid password." });
         }
     } catch (error) {
         res.status(500).json({ success: false, message: "Server error." })
+        console.error('Error in login route: ', error)
     }
 })
 
