@@ -3,12 +3,12 @@ const router = express.Router();
 const getCasesDal = require('../utils(dal)/cases/my-cases');
 
 router.get('/my-cases', (req, res) => {
-    const accessedCookies = req.cookies.userRole
+    const accessedCookies = req.cookies.data
     const lawyerId = 1;
     getCasesDal.getMyCasesByLawyerId(lawyerId)
     .then(cases => {
         res.json(cases);
-        console.log('cookies: ', accessedCookies)
+        console.log('cookies: ', 'All cookies: ', req.cookies)
     })
     .catch(error => {
         return res.status(500).json({error: 'Failed to retrieve my cases.'});
