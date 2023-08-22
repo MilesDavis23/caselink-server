@@ -12,6 +12,7 @@ router.post('/', async (req, res) => {
             const data = userRole;
 
             res.cookie('data', data, { httpOnly: false });
+            
             res.status(200).json({ success: true, message: "Login successful!", role: userRole });
 
         } else {
