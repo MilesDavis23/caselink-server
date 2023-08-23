@@ -1,9 +1,24 @@
 const express = require('express');
 const router = express.Router();
 const getCasesDal = require('../utils(dal)/cases/my-cases');
+const { decrypt } = require('../utils(dal)/encryption/encryption');
+
+router.use('/my-case', (req, res, next) => {
+    if (!req.cookies.encryptedData) {
+        return res.status(401).json({error: 'Authentication failed.. No avaiable cookie. '})
+    }
+
+    const decryptedData = decrypt(req.cookies.encryptedData);
+
+    if (!decryptedData || (decryptedData !== 'lawyer' && decryptedData !== 'admin' && decryptedData !== 'client') ) {
+        return res.status(401).json({ error: 'Not authenticated. Invalid cookie data.'})
+    }
+
+    next();
+});
 
 router.get('/my-cases', (req, res) => {
-    const accessedCookies = req.cookies.data
+    /* const accessedCookies = req.cookies.data */
     const lawyerId = 1;
     getCasesDal.getMyCasesByLawyerId(lawyerId)
     .then(cases => {

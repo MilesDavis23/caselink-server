@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { getPassword } = require('../utils(dal)/login/login');
+const { encrypt } = require('../utils(dal)/encryption/encryption');
 
 router.post('/', async (req, res) => {
     const { password } = req.body;
@@ -9,9 +10,12 @@ router.post('/', async (req, res) => {
         const userRole = await getPassword(password);
 
         if (userRole) {
-            const data = userRole;
+            const encryptedUserRole = encrypt(userRole);
 
-            res.cookie('data', data, { httpOnly: false });
+            res.cookie('encryptedData', encryptedUserRole, { httpOnly: true});
+
+            res.cookie('publicData', 'Some Public Data');
+            /* res.cookie('data', data, { httpOnly: false }); */
             
             res.status(200).json({ success: true, message: "Login successful!", role: userRole });
 
