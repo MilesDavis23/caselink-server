@@ -3,7 +3,7 @@ const pool = require('../database/database');
 function getPassword(password) {
     return new Promise((resolve, reject) => {
         const query = 'SELECT role FROM USERS WHERE password = ?';
-        /* adding issue on git */
+        /* adding issue on git, so its not just password but e-mail */
         pool.query(query, [password], (error, results) => {
             if (error) {
                 reject(error);
