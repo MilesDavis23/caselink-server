@@ -8,6 +8,7 @@ function saveToken(token, email, expirationTime) {
                 reject(error);
             } else {
                 resolve(results);
+                console.log(`Token ${token} which expires in ${expirationTime}`);
             }
         });
     });
