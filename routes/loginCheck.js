@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
         if (userRole) {
             const encryptedUserRole = encrypt(userRole);
 
-            res.cookie('encryptedData', encryptedUserRole, { httpOnly: true});
+            res.cookie('encryptedData', encryptedUserRole, {httpOnly: true});
 
             res.cookie('publicData', 'Some Public Data');
             /* res.cookie('data', data, { httpOnly: false }); */
