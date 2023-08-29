@@ -7,6 +7,7 @@ function invalidateToken(token) {
             if (error) {
                 reject(error);
             } else {
+                console.log(`Token ${token} has been succesfully invalidated. `)
                 resolve(results);
             }
         })
