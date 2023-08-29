@@ -2,20 +2,9 @@ const express = require('express');
 const router = express.Router();
 const { getPassword } = require('../utils(dal)/login/login');
 const { encrypt } = require('../utils(dal)/encryption/encryption');
-const { getUserByEmail } = require('../utils(dal)/password reset/userByEmail');
-
 
 router.post('/', async (req, res) => {
-    const { password, email } = req.body;
-
-    const validEmail = await getUserByEmail(email);
-    if(!validEmail) {
-        return res.status(400).json({message: 'Not a valid e-mail.'});
-    }
-
-    if (!password) {
-        return res.status(200).json({ message: 'Email is valid.'})
-    }
+    const { password } = req.body;
 
     try {
         const userRole = await getPassword(password);
@@ -37,7 +26,7 @@ router.post('/', async (req, res) => {
         res.status(500).json({ success: false, message: "Server error." })
         console.error('Error in login route: ', error)
     }
-});
+})
 
 module.exports = router;
 
