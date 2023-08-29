@@ -17,7 +17,7 @@ function validateToken(token) {
             if (error) {
                 reject(error);
             } else {
-                console.log(`Toden ${token} has been succesfully validated. `)
+                console.log(`Token ${token} has been succesfully validated. `)
                 if (results.length > 0) {
                     resolve(results[0].email);
                 } else {
