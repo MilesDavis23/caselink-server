@@ -3,7 +3,7 @@ const pool =  require('../database/database');
 function getUserByEmail(email) {
 
     return new Promise((resolve, reject) => {
-        const query =  'SELECT user_id FROM USERS WHERE email = ?'
+        const query =  'SELECT * FROM USERS WHERE email = ?'
 
         pool.query(query, [email], (error, results) => {
             if (error) {
