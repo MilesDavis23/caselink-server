@@ -13,7 +13,7 @@ const { resetPassword } = require('../utils(dal)/password reset/updatePassword')
 router.post('/password-reset', async (req, res,) => {
     /* Check if email is in DB, creates a unique token, saves it into the dedicated
     table. */ 
-    const { email } = req.body; 
+    const { email } = req.body;
 
     const user = await getUserByEmail(email);
     if (!user) {
@@ -34,7 +34,6 @@ router.post('/password-reset', async (req, res,) => {
     
 
     return res.status(200).json({ message: 'Password reset email sent. '});
-
 });
 
 router.post('/reset-password', async (req, res) => {
@@ -55,6 +54,7 @@ router.post('/reset-password', async (req, res) => {
     }
 
     /* this is purely optional: */
+    /* this is not working yet  */
     await invalidateToken(token);
 
     return res.status(200).json({ message: "Password update was succesfull!"})
