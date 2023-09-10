@@ -12,7 +12,7 @@ var lawyerRoutes = require('./routes/lawyer');
 var loginRoutes = require('./routes/loginCheck')
 const registrationRoutes = require('./routes/registration');
 var resetPasswordRoutes = require('./routes/resetPassword');
-
+const makeACaseRoute = require('./routes/make-a-case');
 var app = express();
 
 // view engine setup
@@ -37,7 +37,7 @@ app.use('/api/lawyer', lawyerRoutes);
 app.use('/login', loginRoutes)
 app.use('/registration', registrationRoutes);
 app.use('/api/reset-password', resetPasswordRoutes);
-
+app.use('/make-a-case', makeACaseRoute);
 
 
 // catch 404 and forward to error handler
