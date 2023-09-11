@@ -4,10 +4,10 @@ const { saveCase } = require('../utils(dal)/make a case/saveCase');
 
 /* Make a case endpoint: */
 router.post('/create', async (req, res) => {
-    const { userId, title, briefDescription, detailedDescription, caseCategory,  } = req.body;
-
+    const { userId, title, briefDescription, detailedDescription, caseCategory } = req.body;
+    console.log(req.body)
     try {
-        const caseId = await saveCase(userId, title, briefDescription, detailedDescription, caseCategory);
+        const caseId = await saveCase(userId, title, briefDescription, detailedDescription, caseCategory); //saving it as JSON currently
         res.status(200).json({ success: true, message: 'Case saved successfully!'});
     } catch (error) {
         console.error("Error saving the case:", error)
