@@ -29,7 +29,7 @@ function getMyCasesByLawyerId(lawyerId) {
 
 module.exports = {
     getMyCasesByLawyerId
-}
+};
 
 /*
 getBookmarkedCasesByLawyer(lawyerId)
