@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -14,6 +15,7 @@ const registrationRoutes = require('./routes/registration');
 var resetPasswordRoutes = require('./routes/resetPassword');
 const makeACaseRoute = require('./routes/make-a-case');
 const browseCasesRoute = require('./routes/browse-cases');
+const personMyCases = require('./routes/person/my-cases')
 var app = express();
 
 // view engine setup
@@ -40,6 +42,7 @@ app.use('/registration', registrationRoutes);
 app.use('/api/reset-password', resetPasswordRoutes);
 app.use('/make-a-case', makeACaseRoute);
 app.use('/browse-cases', browseCasesRoute);
+app.use('/person/my-cases', personMyCases);
 
 
 // catch 404 and forward to error handler
