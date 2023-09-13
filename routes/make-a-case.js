@@ -1,10 +1,27 @@
 const express = require('express');
 const router = express.Router();
 const { saveCase } = require('../utils(dal)/make a case/saveCase');
+const { verifyJWT } = require('../services/tokenService');
+
+
+/* Middleware for checking the checking the token and getting the user id. */
+router.use('/create', (req, res, next) => {
+    const token = req.cookies.authToken;
+    if(!token) {
+        return res.status(401).json({error: 'Authentication failed. Required cookie not found.'})
+    }
+    const verifiedData = verifyJWT(token);
+    if(!verifiedData){
+        return res.status(401).json({error: 'Authentication denied. Not a valid user. '})
+    }
+    req.user = verifiedData;
+    next();
+})
 
 /* Make a case endpoint: */
 router.post('/create', async (req, res) => {
-    const { userId, title, briefDescription, detailedDescription, caseCategory } = req.body;
+    const { title, briefDescription, detailedDescription, caseCategory } = req.body;
+    const userId = req.user.userId;
     console.log(req.body)
     try {
         const caseId = await saveCase(userId, title, briefDescription, detailedDescription, caseCategory); //saving it as JSON currently

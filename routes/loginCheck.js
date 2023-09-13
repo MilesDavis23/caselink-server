@@ -25,14 +25,12 @@ router.post('/', async (req, res) => {
         if (!match) {
             return res.status(401).json({ success: false, message: 'Invalid password.'})
         }
-
-
+        
         const userData = {
             userId:  validUser.user_id,
             role: validUser.role
         };
         const token = generateJWT(userData);
-        console.log(token);
         /* const encryptedUserRole = encrypt(password, validUser.role); */
         res.cookie('authToken', token, { httpOnly: true});
         /* res.cookie('data', data, { httpOnly: false }); */
