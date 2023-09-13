@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { encrypt } = require('../utils(dal)/encryption/encryption');
 const { getUserByEmail } = require('../utils(dal)/password reset/userByEmail');
-const { generateToken } = require('../utils(dal)/token generator/token');
 const bcrypt = require('bcrypt');
+const { generateJWT } = require('../services/tokenService');
 
 
 router.post('/', async (req, res) => {
@@ -31,7 +31,8 @@ router.post('/', async (req, res) => {
             userId:  validUser.user_id,
             role: validUser.role
         };
-        const token = generateToken(userData);
+        const token = generateJWT(userData);
+        console.log(token);
         /* const encryptedUserRole = encrypt(password, validUser.role); */
         res.cookie('authToken', token, { httpOnly: true});
         /* res.cookie('data', data, { httpOnly: false }); */
