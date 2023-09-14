@@ -9,7 +9,7 @@ const cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var lawyerRoutes = require('./routes/lawyer');
+var lawyerRoutes = require('./routes/lawyer/lawyer');
 var loginRoutes = require('./routes/loginCheck')
 const registrationRoutes = require('./routes/registration');
 var resetPasswordRoutes = require('./routes/resetPassword');
@@ -17,6 +17,7 @@ const makeACaseRoute = require('./routes/make-a-case');
 const browseCasesRoute = require('./routes/browse-cases');
 const personMyCases = require('./routes/person/my-cases')
 const caseRoute = require('./routes/common/individualCasePage');
+const putIntoMyCases = require('./routes/lawyer/putinto-my-cases');
 var app = express();
 
 // view engine setup
@@ -45,6 +46,7 @@ app.use('/make-a-case', makeACaseRoute);
 app.use('/browse-cases', browseCasesRoute);
 app.use('/person/my-cases', personMyCases);
 app.use('/case-page/', caseRoute);
+app.use('/putinto-mycases', putIntoMyCases);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

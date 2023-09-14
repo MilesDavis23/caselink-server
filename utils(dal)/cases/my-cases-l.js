@@ -1,8 +1,8 @@
 const pool = require('../database/database');
-/* This dal gets cases from the CASES table, by user_id */
-function getMyCasesByUserId(userId) {
+/* This gets cases from LawyerMyCases based on user id  */
+function getMyCasesByLawyerUserId(userId) {
     return new Promise ((resolve, reject) => {
-        const query = 'SELECT * FROM CASES WHERE user_id = ?';
+        const query = 'SELECT * FROM LawyerMyCases WHERE user_id ?';
         pool.query(query, [userId], (error, results) => {
             if (error) {
                 reject(error);
@@ -14,5 +14,5 @@ function getMyCasesByUserId(userId) {
 }
 
 module.exports = {
-    getMyCasesByUserId
+    getMyCasesByLawyerUserId
 }
