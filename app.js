@@ -16,6 +16,7 @@ var resetPasswordRoutes = require('./routes/resetPassword');
 const makeACaseRoute = require('./routes/make-a-case');
 const browseCasesRoute = require('./routes/browse-cases');
 const personMyCases = require('./routes/person/my-cases')
+const caseRoute = require('./routes/common/individualCasePage');
 var app = express();
 
 // view engine setup
@@ -43,7 +44,7 @@ app.use('/api/reset-password', resetPasswordRoutes);
 app.use('/make-a-case', makeACaseRoute);
 app.use('/browse-cases', browseCasesRoute);
 app.use('/person/my-cases', personMyCases);
-
+app.use('/case-page/', caseRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
