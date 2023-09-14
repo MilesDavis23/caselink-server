@@ -1,10 +1,7 @@
-const { verify } = require('crypto');
 const express = require('express');
 const { verifyJWT } = require('../../services/tokenService');
 const router = express.Router();
 const cases = require('../../utils(dal)/cases/my-cases-p');
-
-
 
 router.use('/', (req, res, next) => {
     const token = req.cookies.authToken
