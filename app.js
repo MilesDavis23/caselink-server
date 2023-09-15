@@ -18,6 +18,7 @@ const browseCasesRoute = require('./routes/browse-cases');
 const personMyCases = require('./routes/person/my-cases')
 const caseRoute = require('./routes/common/individualCasePage');
 const putIntoMyCases = require('./routes/lawyer/putinto-my-cases');
+const lawyerMyCases = require('./routes/lawyer/lawyer-mycases');
 var app = express();
 
 // view engine setup
@@ -47,6 +48,7 @@ app.use('/browse-cases', browseCasesRoute);
 app.use('/person/my-cases', personMyCases);
 app.use('/case-page/', caseRoute);
 app.use('/putinto-mycases', putIntoMyCases);
+app.use('/lawyer/my-cases', lawyerMyCases);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,7 +1,8 @@
 const express = require('express');
-const { verifyJWT } = require('../../services/tokenService');
 const router = express.Router();
-const cases = require('../../utils(dal)/cases/my-cases-p');
+const mycases = require('../../utils(dal)/cases/my-cases-l');
+const { verifyJWT } = require('../../services/tokenService');
+
 
 router.use('/', (req, res, next) => {
     const token = req.cookies.authToken
@@ -15,7 +16,7 @@ router.use('/', (req, res, next) => {
         return res.status(401).json({error: 'Authentication denied. Not a valid user.' })
     };
 
-    if(verifiedData.role !== 'client') {
+    if(verifiedData.role !== 'lawyer') {
         return res.status(401).json({error: 'Invalid role. Access denied. '})
     };
 
@@ -24,17 +25,17 @@ router.use('/', (req, res, next) => {
     next();
 });
 
-router.get('/', (req, res) => {
-    const userId =  req.user.userId;
+router.get('/', async (req, res) => {
+    const userId = req.user.userId;
+    console.log(userId)
+    try {
+        const cases = await mycases.getMyCasesByLawyerUserId(userId);
+        res.json(cases);
+    } catch (error) {
+        console.log('Error gettin the cases form CASES:', error.message);
+        return res.status(500).json({ error: 'Failed to retriving my cases for user. ' })
 
-    cases.getMyCasesByUserId(userId)
-        .then(cases => {
-            res.json(cases);
-        })
-        .catch(error => {
-            console.error('Error retriving cases:', error);
-            return res.status(500).json({error: 'Failed to retrive my cases.'});
-        });
+    };
 });
 
-module.exports = router;
+module.exports = router; 
