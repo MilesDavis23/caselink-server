@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
         };
         const token = generateJWT(userData);
         /* const encryptedUserRole = encrypt(password, validUser.role); */
-        res.cookie('authToken', token, { httpOnly: true});
+        res.cookie('authToken', token, { httpOnly: false });
         /* res.cookie('data', data, { httpOnly: false }); */
         res.status(200).json({ success: true, message: "Login successful!", role: validUser.role });
 
