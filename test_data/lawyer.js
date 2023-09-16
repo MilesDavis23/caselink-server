@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const getCasesDal = require('../../utils(dal)/cases/my-cases');
-const { decrypt } = require('../../utils(dal)/encryption/encryption');
+const getCasesDal = require('../utils(dal)/cases/my-cases');
+const { decrypt } = require('../utils(dal)/encryption/encryption');
 
 router.use('/my-case', (req, res, next) => {
     if (!req.cookies.encryptedData) {

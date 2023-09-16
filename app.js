@@ -9,7 +9,7 @@ const cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var lawyerRoutes = require('./routes/lawyer/lawyer');
+var lawyerRoutes = require('./test_data/lawyer');
 var loginRoutes = require('./routes/loginCheck')
 const registrationRoutes = require('./routes/registration');
 var resetPasswordRoutes = require('./routes/resetPassword');
