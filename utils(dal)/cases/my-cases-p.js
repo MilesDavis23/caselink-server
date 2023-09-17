@@ -9,9 +9,9 @@ function getMyCasesByUserId(userId) {
             } else {
                 resolve(results);
             }
-        })
-    })
-}
+        });
+    });
+};
 
 module.exports = {
     getMyCasesByUserId
