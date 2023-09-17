@@ -21,6 +21,7 @@ const putIntoMyCases = require('./routes/lawyer/putinto-my-cases');
 const lawyerMyCases = require('./routes/lawyer/lawyer-mycases');
 const sendOffer = require('./routes/lawyer/send-offer');
 const getOffer = require('./routes/person/checkOffer');
+const updateOffer = require('./routes/person/handleOffer'); 
 var app = express();
 
 // view engine setup
@@ -52,7 +53,8 @@ app.use('/person/checkOffer', getOffer);
 app.use('/case-page/', caseRoute);
 app.use('/putinto-mycases', putIntoMyCases);
 app.use('/lawyer/my-cases', lawyerMyCases);
-app.use('/lawyer/send-offer', sendOffer)
+app.use('/lawyer/send-offer', sendOffer);
+app.use('/person/update-offer-status', updateOffer);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
