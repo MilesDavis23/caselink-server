@@ -1,10 +1,11 @@
 const express = require('express');
 const { verifyJWT } = require('../../services/tokenService');
 const router = express.Router();
-const cases = require('../../utils(dal)/cases/my-cases-p');
+const cases = require('../../utils(dal)/offer management/getOffer');
+
 
 router.use('/', (req, res, next) => {
-    const token = req.cookies.authToken
+    const token = req.cookies.authToken;
 
     if (!token) {
         return res.status(401).json({error: 'Authentication failed. Required cookie not found.'})
@@ -22,19 +23,18 @@ router.use('/', (req, res, next) => {
     /* Check on this later: */
     req.user = verifiedData;
     next();
+
 });
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     const userId = req.user.userId;
-
-    cases.getMyCasesByUserId(userId)
-        .then(cases => {
-            res.json(cases);
-        })
-        .catch(error => {
-            console.error('Error retriving cases:', error);
-            return res.status(500).json({error: 'Failed to retrive my cases.'});
-        });
+    try {
+        const offer = await cases.getOffer(userId);
+        res.json(offer)
+    } catch (error) {
+        console.log('Error retriving cases:', error);
+        return res.status(500).json({error: 'Failed to retrive my cases.'});
+    };
 });
 
 module.exports = router;
