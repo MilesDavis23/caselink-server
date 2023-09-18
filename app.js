@@ -8,7 +8,6 @@ var cookieParser = require('cookie-parser');
 const cors = require('cors');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var lawyerRoutes = require('./test_data/lawyer');
 var loginRoutes = require('./routes/loginCheck')
 const registrationRoutes = require('./routes/registration');
@@ -22,6 +21,8 @@ const lawyerMyCases = require('./routes/lawyer/lawyer-mycases');
 const sendOffer = require('./routes/lawyer/send-offer');
 const getOffer = require('./routes/person/checkOffer');
 const updateOffer = require('./routes/person/handleOffer'); 
+const getUserdata = require('./routes/common/users');
+const logoutRoutes = require('./routes/common/logout');
 var app = express();
 
 // view engine setup
@@ -41,7 +42,6 @@ app.use(cors({
 app.use(cookieParser());
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/api/lawyer', lawyerRoutes);
 app.use('/login', loginRoutes)
 app.use('/registration', registrationRoutes);
@@ -55,6 +55,8 @@ app.use('/putinto-mycases', putIntoMyCases);
 app.use('/lawyer/my-cases', lawyerMyCases);
 app.use('/lawyer/send-offer', sendOffer);
 app.use('/person/update-offer-status', updateOffer);
+app.use('/users/userdata', getUserdata);
+app.use('/logout', logoutRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
