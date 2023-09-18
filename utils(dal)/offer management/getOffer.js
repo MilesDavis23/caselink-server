@@ -1,5 +1,6 @@
 const pool = require('../database/database');
 
+
 const getOffer = (userId, caseId) => {
     return new Promise((resolve, reject) => {
         /* here , maybe selet the offerID too.  */
