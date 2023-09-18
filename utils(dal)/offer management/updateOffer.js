@@ -1,15 +1,31 @@
 const pool = require('../database/database');
 
-const updateOfferStatus = async (userId, status) => {
+const updateOfferStatus = async ( offerId, caseId, status) => {
     return new Promise((resolve, reject) => {
-        /* thid query basically search for the offer and changes basedon User-Clinet userID, add the offer ID too. */
         const query = `
-        UPDATE Offers o
-        JOIN CASES c ON o.caseID = c.case_id
-        SET o.offerStatus = ?
-        WHERE c.user_id = ?;
+        UPDATE Offers
+        SET offerStatus = ?
+        WHERE offerID = ? AND caseID = ?;
         `;
-        pool.query(query, [status, userId], (error, results) => {
+        pool.query(query, [status, offerId, caseId], (error, results) => {
+            if (error){
+                reject(error);
+            } else {
+                resolve(results);
+            }
+        });
+    })
+}
+
+const updateCaseStatusToActive = async (status, userId, caseId) => {
+    return new Promise((resolve, reject) => {
+        const query = `
+        UPDATE CASES
+        SET status = ?
+        WHERE user_id = ? AND case_id = ?;
+        `;
+        pool.query(query, [status, userId, parseInt(caseId)], (error, results) => {
+            console.log('query: ', query, [status, userId, parseInt(caseId)]);
             if (error){
                 reject(error);
             } else {
@@ -20,7 +36,8 @@ const updateOfferStatus = async (userId, status) => {
 }
 
 module.exports = {
-    updateOfferStatus
+    updateOfferStatus, 
+    updateCaseStatusToActive
 }
 
 

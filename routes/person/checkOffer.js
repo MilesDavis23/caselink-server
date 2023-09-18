@@ -27,9 +27,11 @@ router.use('/', (req, res, next) => {
 });
 
 router.get('/', async (req, res) => {
+    const { caseId } = req.query
     const userId = req.user.userId;
+    console.log(userId)
     try {
-        const offer = await cases.getOffer(userId);
+        const offer = await cases.getOffer(userId, caseId);
         res.json(offer)
     } catch (error) {
         console.log('Error retriving cases:', error);

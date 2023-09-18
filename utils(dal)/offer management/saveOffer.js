@@ -11,8 +11,10 @@ const saveOffer = (caseId, ofereeId, offerDescription, offerAmmount, status) => 
             }
         });
     })
-}
+};
+
 
 module.exports = {
-    saveOffer
-}
+    saveOffer,
+
+};
