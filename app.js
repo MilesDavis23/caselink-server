@@ -23,6 +23,7 @@ const getOffer = require('./routes/person/checkOffer');
 const updateOffer = require('./routes/person/handleOffer'); 
 const getUserdata = require('./routes/common/users');
 const logoutRoutes = require('./routes/common/logout');
+const getHighlights = require('./routes/common/caseHighlights');
 var app = express();
 
 // view engine setup
@@ -57,6 +58,7 @@ app.use('/lawyer/send-offer', sendOffer);
 app.use('/person/update-offer-status', updateOffer);
 app.use('/users/userdata', getUserdata);
 app.use('/logout', logoutRoutes);
+app.use('/highlights', getHighlights);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
