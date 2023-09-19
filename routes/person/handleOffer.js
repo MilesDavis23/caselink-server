@@ -11,18 +11,18 @@ router.put('/', async (req, res) => {
 
         const result = await updateOfferStatus(offerId, caseId, status);
         if (result.affectedRows > 0) {
-            if (status === 'active' || 'declined') {
+            if (status === 'active' || 'declined' || 'sent') {
                 let caseUpdateResult;
                 if (status === 'declined') {
-                    caseUpdateResult = await updateCaseStatusToActive('added', userId, caseId)
-                } else {
+                    caseUpdateResult = await updateCaseStatusToActive('added', userId, caseId);
+                }  else  {
                     caseUpdateResult = await updateCaseStatusToActive(status, userId, caseId);
 
                 }
                 if (caseUpdateResult.affectedRows > 0) {
                     res.json({
                         success: true,
-                        message: `Offer has been ${status} and corresponding case status updated to active.`
+                        message: `Offer has been ${status} and corresponding case status updated.`
                     });
                 } else {
                     res.json({
