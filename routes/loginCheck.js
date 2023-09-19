@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
         const match = await bcrypt.compare(password, validUser.password)
         console.log(match)
         if (!match) {
-            return res.status(401).json({ success: false, message: 'Invalid password.'})
+            return res.status(400).json({ success: false, message: 'Invalid password.'})
         }
         
         const userData = {
