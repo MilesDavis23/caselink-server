@@ -28,9 +28,9 @@ router.use('/', (req, res, next) => {
 router.get('/', async (req, res) => {
 
     const userId = req.user.userId;
-    console.log(userId)
     try {
         const cases = await mycases.getMyCasesByLawyerUserId(userId);
+        console.log('Fetching lawyer mycases. UserId: ', userId);
         res.json(cases);
     } catch (error) {
         console.log('Error gettin the cases form CASES:', error.message);
