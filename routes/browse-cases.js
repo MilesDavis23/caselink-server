@@ -23,7 +23,7 @@ router.use ('/', (req, res, next) => {
     /* Check on this later: */
     req.user = verifiedData;
     next();
-})
+});
 
 router.get('/', async (req, res, ) => {
     const userId = req.user.userId;

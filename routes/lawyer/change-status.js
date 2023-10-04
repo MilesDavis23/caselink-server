@@ -22,7 +22,7 @@ router.use ('/', (req, res, next) => {
     /* Check on this later: */
     req.user = verifiedData;
     next();
-})
+});
 
 router.post('/', async (req, res) => {
     const { caseId, status } = req.body;
