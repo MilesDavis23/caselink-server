@@ -5,11 +5,12 @@ const getOffer = (userId, caseId) => {
     return new Promise((resolve, reject) => {
         /* here , maybe selet the offerID too.  */
         const query = `
-        SELECT o.offerID, o.offerDetails, o.offerPrice, o.offerStatus  
-        FROM Offers AS o 
-        JOIN CASES AS c ON o.caseID = c.case_id 
-        WHERE c.user_id = ? AND c.case_id = ?
-    `;
+            SELECT o.offerID, o.offerDetails, o.offerPrice, o.offerStatus, u.username 
+            FROM Offers AS o 
+            JOIN CASES AS c ON o.caseID = c.case_id 
+            JOIN USERS AS u ON c.user_id = u.user_id
+            WHERE c.user_id = ? AND c.case_id = ?
+        `;
         pool.query(query, [userId, caseId], (error, results) => {
             if (error) {
                 reject(error);

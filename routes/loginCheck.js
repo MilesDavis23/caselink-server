@@ -28,7 +28,8 @@ router.post('/', async (req, res) => {
         
         const userData = {
             userId:  validUser.user_id,
-            role: validUser.role
+            role: validUser.role, 
+            username: validUser.username
         };
         const token = generateJWT(userData);
         /* const encryptedUserRole = encrypt(password, validUser.role); */
