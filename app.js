@@ -26,6 +26,7 @@ const logoutRoutes = require('./routes/common/logout');
 const getHighlights = require('./routes/common/caseHighlights');
 const updateStatus =  require('./routes/lawyer/change-status');
 const notifications = require('./routes/notifications/notifications')
+
 var app = express();
 
 // view engine setup
@@ -63,6 +64,7 @@ app.use('/logout', logoutRoutes);
 app.use('/highlights', getHighlights);
 app.use('/change-status', updateStatus);
 app.use('/notifications', notifications);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
