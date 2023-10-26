@@ -27,7 +27,7 @@ function changeAllNotificationByUserNameForAllNoti(username) {
         SET is_read = 1
         WHERE message LIKE ? AND is_read = 0
         `;
-        pool.query(query, [`%${username}`], (error, results) => {
+        pool.query(query, [`%${username}%`], (error, results) => {
             if (error) {
                 reject(error);
             } else {
