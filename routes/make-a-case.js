@@ -20,15 +20,13 @@ router.use('/create', (req, res, next) => {
 
 /* Make a case endpoint: */
 router.post('/create', async (req, res) => {
-    const { title, briefDescription, detailedDescription, caseCategory } = req.body;
+    //add timestamp 
+    const { title, briefDescription, detailedDescription, caseCategory, categoryTags, timestamp  } = req.body;
     const userId = req.user.userId;
-    console.log(userId);
-    console.log(req.body)
     try {
-        console.log(userId, title, briefDescription, detailedDescription, caseCategory)
-        console.log(title)
-        console.log(caseCategory)
-        await saveCase(userId, title, briefDescription, detailedDescription, caseCategory); //saving it as JSON currently
+        console.log(categoryTags, caseCategory)
+        console.log(req.body)
+        await saveCase(userId, title, briefDescription, detailedDescription, caseCategory, categoryTags, timestamp); //saving it as JSON currently
         res.status(200).json({ success: true, message: 'Case saved successfully!'});
     } catch (error) {
         console.error("Error saving the case:", error)
